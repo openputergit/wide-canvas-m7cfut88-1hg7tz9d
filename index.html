@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actor Management System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .required:after {
+            content: " *";
+            color: red;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="min-h-screen p-4 md:p-8">
+        <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-6">
+            <h1 class="text-2xl font-bold text-gray-800 mb-6">Actor Management System</h1>
+            
+            <form id="actorForm" class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Actor ID (Read-only) -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Actor ID</label>
+                        <input type="text" id="actorId" readonly 
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm bg-gray-100 p-2"
+                            value="Will be generated automatically">
+                    </div>
+
+                    <!-- Actor Name -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 required">Actor Name</label>
+                        <input type="text" id="actorName" required
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2">
+                    </div>
+
+                    <!-- Address -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 required">Address</label>
+                        <textarea id="address" required
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2"></textarea>
+                    </div>
+
+                    <!-- Contact Number -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 required">Contact Number</label>
+                        <input type="tel" id="contactNumber" pattern="[0-9]{10}" required
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2">
+                    </div>
+
+                    <!-- Crop -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Crop</label>
+                        <input type="text" id="crop"
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2">
+                    </div>
+
+                    <!-- State -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 required">State</label>
+                        <select id="state" required
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2">
+                            <option value="">Select State</option>
+                        </select>
+                    </div>
+
+                    <!-- District -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 required">District</label>
+                        <select id="district" required
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2">
+                            <option value="">Select District</option>
+                        </select>
+                    </div>
+
+                    <!-- Pincode -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 required">Pincode</label>
+                        <input type="number" id="pincode" pattern="[0-9]{6}" required
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2">
+                    </div>
+
+                    <!-- Firm Name -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Firm Name</label>
+                        <input type="text" id="firmName"
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2">
+                    </div>
+
+                    <!-- Level -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 required">Level</label>
+                        <select id="level" required
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2">
+                            <option value="">Select Level</option>
+                            <option value="1">Level 1 - Admin</option>
+                            <option value="2">Level 2 - Manager</option>
+                            <option value="3">Level 3 - Supervisor</option>
+                            <option value="4">Level 4 - Operator</option>
+                        </select>
+                    </div>
+
+                    <!-- Process -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Process</label>
+                        <input type="text" id="process"
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2">
+                    </div>
+
+                    <!-- Asset -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Asset</label>
+                        <input type="text" id="asset"
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2">
+                    </div>
+                </div>
+
+                <div class="flex justify-end space-x-4">
+                    <button type="button" onclick="resetForm()" 
+                        class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50">
+                        Reset
+                    </button>
+                    <button type="submit"
+                        class="px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700">
+                        Add Actor
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // States and Districts data
+        const stateDistricts = {
+            "Andhra Pradesh": ["Anantapur", "Chittoor", "East Godavari", "Guntur"],
+            "Karnataka": ["Bangalore", "Mysore", "Hubli", "Mangalore"],
+            "Tamil Nadu": ["Chennai", "Coimbatore", "Madurai", "Salem"],
+            // Add more states and districts as needed
+        };
+
+        // Populate states dropdown
+        const stateSelect = document.getElementById('state');
+        Object.keys(stateDistricts).forEach(state => {
+            const option = new Option(state, state);
+            stateSelect.add(option);
+        });
+
+        // Update districts when state changes
+        stateSelect.addEventListener('change', function() {
+            const districts = stateDistricts[this.value] || [];
+            const districtSelect = document.getElementById('district');
+            districtSelect.innerHTML = '<option value="">Select District</option>';
+            districts.forEach(district => {
+                const option = new Option(district, district);
+                districtSelect.add(option);
+            });
+        });
+
+        // Actor ID generator
+        let currentActorId = 1000; // Starting ID
+        function generateActorId() {
+            return `ACT${++currentActorId}`;
+        }
+
+        // Form submission
+        document.getElementById('actorForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Validate phone number
+            const phoneNumber = document.getElementById('contactNumber').value;
+            if (!/^\d{10}$/.test(phoneNumber)) {
+                alert('Please enter a valid 10-digit phone number');
+                return;
+            }
+
+            // Validate pincode
+            const pincode = document.getElementById('pincode').value;
+            if (!/^\d{6}$/.test(pincode)) {
+                alert('Please enter a valid 6-digit pincode');
+                return;
+            }
+
+            // Generate Actor ID
+            const actorId = generateActorId();
+
+            // Create actor object
+            const actor = {
+                actorId: actorId,
+                actorName: document.getElementById('actorName').value,
+                address: document.getElementById('address').value,
+                contactNumber: phoneNumber,
+                crop: document.getElementById('crop').value,
+                district: document.getElementById('district').value,
+                firmName: document.getElementById('firmName').value,
+                level: document.getElementById('level').value,
+                pincode: pincode,
+                process: document.getElementById('process').value,
+                state: document.getElementById('state').value,
+                asset: document.getElementById('asset').value
+            };
+
+            // Here you would typically send this data to your backend
+            console.log('Actor data:', actor);
+            alert('Actor added successfully!\nActor ID: ' + actorId);
+            
+            // Reset form
+            this.reset();
+            document.getElementById('actorId').value = "Will be generated automatically";
+        });
+
+        // Reset form function
+        function resetForm() {
+            document.getElementById('actorForm').reset();
+            document.getElementById('actorId').value = "Will be generated automatically";
+            document.getElementById('district').innerHTML = '<option value="">Select District</option>';
+        }
+    </script>
+<script>document.body.addEventListener('wheel', e => { if (!e.ctrlKey) return; e.preventDefault(); return }, { passive: false })</script>
+	</body>
+</html>
